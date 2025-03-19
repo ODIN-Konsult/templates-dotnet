@@ -1,0 +1,15 @@
+*.cs       @ODIN-Konsult/backend-owners
+*.csproj   @ODIN-Konsult/backend-owners
+*.slnx     @ODIN-Konsult/backend-owners
+
+Directory.Packages.props  @ODIN-Konsult/backend-owners
+xunit.runner.json         @ODIN-Konsult/backend-owners
+.gitattributes            @ODIN-Konsult/backend-owners
+
+Directory.Build.props     @akritikos
+Directory.Build.targets   @akritikos
+.editorconfig             @akritikos
+.globalconfig             @akritikos
+.runsettings              @akritikos
+dotnet.ruleset            @akritikos
+xunit.runner.json         @akritikos
