@@ -102,10 +102,6 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Entity Framework Core - Compiled Model generation">
-    <!-- Needs Microsoft.EntityFrameworkCore.Tasks to work -->
-    <InterceptorsNamespaces>
-      $(InterceptorsPreviewNamespaces);Microsoft.EntityFrameworkCore.GeneratedInterceptors
-    </InterceptorsNamespaces>
     <EFOptimizeContext>true</EFOptimizeContext>
     <EFScaffoldModelStage>build</EFScaffoldModelStage>
   </PropertyGroup>
