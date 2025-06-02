@@ -21,8 +21,9 @@ branches:
       - hotfix
   hotfix:
     mode: ContinuousDelivery
+    label: '{BranchName}'
     source-branches:
-      - release
+      - main
 
 prevent-increment:
   of-merged-branch: true
