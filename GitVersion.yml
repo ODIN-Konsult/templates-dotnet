@@ -23,7 +23,7 @@ branches:
     mode: ContinuousDelivery
     label: '{BranchName}'
     source-branches:
-      - main
+      - release
 
 prevent-increment:
   of-merged-branch: true
