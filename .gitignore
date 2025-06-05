@@ -1158,3 +1158,4 @@ upload/*
 artifacts/*
 !artifacts/.gitkeep
 **/OpenApi/*.json
+compose.override.yaml
