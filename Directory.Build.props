@@ -144,19 +144,10 @@
     <None Include="$(ProjectIcon)" Pack="true" PackagePath="icon.png" Visible="false"/>
   </ItemGroup>
 
-  <!-- Use .NET ruleset for analyzers -->
-  <PropertyGroup Label="Code Analysis Ruleset"
-                 Condition="Exists('$(MSBuildThisFileDirectory)\dotnet.ruleset')">
-    <CodeAnalysisRuleset>$(MSBuildThisFileDirectory)\dotnet.ruleset</CodeAnalysisRuleset>
-  </PropertyGroup>
-
   <!-- Uses pretty xUnit configuration -->
   <ItemGroup Label="xUnit Configuration"
              Condition="Exists('$(MSBuildThisFileDirectory)\xunit.runner.json') AND $(IsTestProject)=='True'">
-    <AdditionalFiles Include="$(MSBuildThisFileDirectory)\xunit.runner.json"
-                     Link="xunit.runner.json" Visible="false">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AdditionalFiles>
+    <Content Include="$(MSBuildThisFileDirectory)\xunit.runner.json" Link="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" Visible="false" />
   </ItemGroup>
 
   <!-- Project internals are exposed to projects named $(Project).Tests by default -->
@@ -173,8 +164,9 @@
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
     <Copyright>Copyright © $(CurrentYear) Odin Konsult AS. All rights reserved.</Copyright>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageOutputPath>$(MSBuildThisFileDirectory)/packages</PackageOutputPath>
-    <PublishDir>$(MSBuildThisFileDirectory)/upload/$(ProjectName)</PublishDir>
+    <PackageOutputPath Condition="$(PackageOutputPath) == ''">$(MSBuildThisFileDirectory)/packages</PackageOutputPath>
+    <PublishDir Condition="$(PublishDir) == ''">
+      $(MSBuildThisFileDirectory)/upload/$(MSBuildProjectName)</PublishDir>
     <PackageIcon Condition="$(ProjectIconExists) == 'True'">icon.png</PackageIcon>
     <PackageReadmeFile Condition="$(ProjectReadMeExists) == 'True'">README.md</PackageReadmeFile>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -190,7 +182,7 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
-  <ItemGroup Label="Nugets" Condition="'$(IsTestProject)' != 'true'">
+  <ItemGroup Label="Versioning" Condition="'$(IsTestProject)' != 'true'">
     <PackageReference Include="GitVersion.MsBuild"
                       Condition="Exists('$(MSBuildThisFileDirectory)\.git')">
       <PrivateAssets>all</PrivateAssets>
