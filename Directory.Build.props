@@ -50,7 +50,7 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);*.log;*.binlog</DefaultItemExcludes>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(ArtifactsPath) == ''">
+  <PropertyGroup Condition="$(ArtifactsPath) == '' AND $(DisableCustomArtifactsPath) != 'true'">
     <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
   </PropertyGroup>
 
@@ -103,7 +103,7 @@
 
   <PropertyGroup Label="Entity Framework Core - Compiled Model generation">
     <EFOptimizeContext>true</EFOptimizeContext>
-    <EFScaffoldModelStage>build</EFScaffoldModelStage>
+    <EFScaffoldModelStage>publish</EFScaffoldModelStage>
   </PropertyGroup>
 
   <!-- Sets deterministic source paths for CI builds -->
@@ -122,12 +122,6 @@
     <!-- https://www.appveyor.com/docs/environment-variables/ -->
     <ContinuousIntegrationBuild Condition="'$(APPVEYOR)' == 'True'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
-
-  <!-- Enable custom nesting for files -->
-  <ItemGroup>
-    <ProjectCapability Include="DynamicFileNesting"/>
-    <ProjectCapability Include="DynamicDependentFile"/>
-  </ItemGroup>
 
   <!-- Mark assemblies as CLS compliant so the compiler warns on non compliant usage -->
   <PropertyGroup Condition="$(IsPackable) == 'true'">
@@ -210,10 +204,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="xunit.analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Label="SourceLink" Condition="$(IsPackable) == 'true'">
+    <SourceLinkGiteaHost Include="git.kritikos.io"/>
   </ItemGroup>
 
 </Project>
