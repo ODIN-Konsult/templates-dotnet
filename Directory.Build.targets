@@ -7,6 +7,9 @@
     <IsPackable>false</IsPackable>
     <PackAsTool>false</PackAsTool>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <RunSettingsFilePath>$(MSBuildThisFileDirectory)\.runsettings</RunSettingsFilePath>
   </PropertyGroup>
 
   <ItemGroup Label="Hide Assets">
