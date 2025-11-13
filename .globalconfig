@@ -1,6 +1,8 @@
 is_global = true
 
-dotnet_diagnostic.SA1101.severity = none
+# Ruleset replacement
+dotnet_diagnostic.CA2007.severity = none # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2007
+dotnet_diagnostic.CA1303.severity = none # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1303
 
 # Organize usings
 dotnet_sort_system_directives_first = true
