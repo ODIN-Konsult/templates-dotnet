@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
+  <RunConfiguration>
+    <ResultsDirectory>.\TestResults</ResultsDirectory>
+    <DisableAppDomain>true</DisableAppDomain>
+  </RunConfiguration>
+  <xUnit>
+    <Culture>invariant</Culture>
+    <LongRunningTestSeconds>5</LongRunningTestSeconds>
+  </xUnit>
   <DataCollectionRunSettings>
     <DataCollectors>
-      <DataCollector friendlyName="XPlat Code Coverage">
+      <DataCollector friendlyName="Code Coverage">
         <Configuration>
-          <Format>cobertura,opencover</Format>
-          <ExcludeByAttribute>Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
+          <Format>cobertura</Format>
+          <CoverageFileName>coverage.xml</CoverageFileName>
+          <ExcludeByAttribute>ObsoleteAttribute,GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
           <ExcludeByFile>**/tests/**.cs,**/samples/**.cs</ExcludeByFile>
           <SingleHit>false</SingleHit>
           <UseSourceLink>true</UseSourceLink>
