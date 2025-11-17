@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.7-labs
-ARG DOTNET_VERSION=latest
+ARG DOTNET_VERSION=9.0
 ARG CONFIGURATION=Release
 ARG SOLUTION_NAME="*"
 ARG SOLUTION_EXTENSION="slnx"
@@ -24,7 +24,7 @@ FROM sdk AS restore
 ARG SOLUTION_NAME
 ARG SOLUTION_EXTENSION
 
-COPY --link ${SOLUTION_NAME}.${SOLUTION_EXTENSION} Directory.Build.* Directory.Packages.props ./
+COPY --link ${SOLUTION_NAME}.${SOLUTION_EXTENSION} Directory.Build.* Directory.Packages.props .runsettings ./
 COPY --link --parents ./**.csproj ./**/packages.lock.json ./
 
 RUN dotnet restore
@@ -56,7 +56,7 @@ ENV EFPROJECT=src/${DATABASE_PROJECT}/${DATABASE_PROJECT}.csproj
 ENV RUNNER=src/${PUBLISHED_PROJECT}/${PUBLISHED_PROJECT}.csproj
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
-RUN dotnet tool install --global dotnet-ef
+RUN dotnet tool install --global dotnet-ef --version 9.*
 RUN dotnet ef migrations bundle --configuration ${CONFIGURATION} --no-build --project ${EFPROJECT} --startup-project ${RUNNER} --output /app/migrations ${CONTEXT}
 
 FROM asp as migrations
