@@ -1,9 +1,10 @@
 <Solution>
-  <Folder Name="/assets/">
+  <Folder Name="/Assets/">
+    <File Path="icon.png" />
     <File Path="LICENSE.md" />
     <File Path="README.md" />
   </Folder>
-  <Folder Name="/config/">
+  <Folder Name="/Configuration/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
     <File Path=".globalconfig" />
@@ -12,10 +13,17 @@
     <File Path="Directory.Build.targets" />
     <File Path="Directory.Packages.props" />
     <File Path="dotnet.ruleset" />
-    <File Path="xunit.runner.json" />
     <File Path="GitVersion.yml" />
+    <File Path="stylecop.json" />
+    <File Path="xunit.runner.json" />
   </Folder>
-  <Folder Name="/samples/" />
-  <Folder Name="/src/" />
-  <Folder Name="/tests/" />
+  <Folder Name="/samples/">
+    <File Path="samples\Directory.Build.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <File Path="src\Directory.build.props" />
+  </Folder>
+  <Folder Name="/tests/">
+    <File Path="tests\Directory.Build.props" />
+  </Folder>
 </Solution>
