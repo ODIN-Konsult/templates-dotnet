@@ -13,8 +13,12 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS asp
 WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS sdk
+FROM docker-registry.eyevnext.gr/eyevnext/nuget-config:latest AS nugetconfig
+
+FROM nugetconfig AS sdk
 ARG CONFIGURATION
+ARG NUGET_USERNAME
+ARG NUGET_PASSWORD
 ENV DOTNET_NOLOGO=0
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 WORKDIR /build
