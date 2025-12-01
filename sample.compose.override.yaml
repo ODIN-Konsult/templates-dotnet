@@ -1,4 +1,4 @@
 services:
-  eyevnext-devices-db:
+  eyevnext-sample-db:
     ports:
       - "${DB_PORT_HOST:-15432}:5432"
